@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29609.76
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cmdty.Core.Trees", "src\Cmdty.Core.Trees\Cmdty.Core.Trees.csproj", "{15AAB4DC-DC45-49BA-85D8-BD81E254A2B9}"
 EndProject
@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		azure-pipelines.yml = azure-pipelines.yml
 		build.cake = build.cake
+		CHANGELOG.md = CHANGELOG.md
 		Cmdty.Core.nuspec = Cmdty.Core.nuspec
 		Directory.Build.props = Directory.Build.props
 		global.json = global.json
@@ -27,9 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cmdty.Core.Trees.Test", "te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cmdty.Core.Simulation.Test", "tests\Cmdty.Core.Simulation.Test\Cmdty.Core.Simulation.Test.csproj", "{4FF72A74-0386-4CBF-AA17-5B64AB1E8665}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmdty.Core.Common", "src\Cmdty.Core.Common\Cmdty.Core.Common.csproj", "{3F5965B1-10C3-436B-8DD4-62CE782AAC7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cmdty.Core.Common", "src\Cmdty.Core.Common\Cmdty.Core.Common.csproj", "{3F5965B1-10C3-436B-8DD4-62CE782AAC7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmdty.Core.Common.Test", "tests\Cmdty.Core.Common.Test\Cmdty.Core.Common.Test.csproj", "{B9AF49F8-DE3F-4157-815E-B7D8F2E017E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cmdty.Core.Common.Test", "tests\Cmdty.Core.Common.Test\Cmdty.Core.Common.Test.csproj", "{B9AF49F8-DE3F-4157-815E-B7D8F2E017E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
