@@ -31,13 +31,15 @@ namespace Cmdty.Core.Simulation
 {
     public sealed class MersenneTwisterGenerator : IStandardNormalGeneratorWithSeed
     {
-        // TODO make field RandomSource type and inject in MersenneTwister? Probably not worth if for now.
+        // TODO make field RandomSource type and inject in MersenneTwister? Probably not worth it for now.
         private MersenneTwister _randomSource;
         private int _seed;
         private readonly bool? _threadSafe;
         private double[] _antitheticBuffer;
         private bool _returnFromAntitheticBuffer;
-        public bool Antithetic { get; } // TODO put antithetic functionality in decorator wrapper class
+        public bool Antithetic { get; }
+
+        public bool IsRandom => true;
 
         public MersenneTwisterGenerator(int seed, bool threadSafe, bool antithetic)
         {
