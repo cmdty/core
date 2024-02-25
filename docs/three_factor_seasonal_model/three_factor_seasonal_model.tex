@@ -34,7 +34,7 @@ The starting point is the SDE (stochastic differential equation) for the forward
 price process:
 
 \begin{align}
-    \label{eq:forward_sde}
+    \label{eq:general_forward_sde}
     \frac{dF(t, T)^l}{F(t, T)^l}=\sum_{i=1}^{n^l} \sigma_i^l(T)e^{-\alpha_i^l(T-t)}dz_i^l(t) \\
     \nonumber
     \alpha_i^l \in \mathbb{R}_{\ge 0} \\
@@ -78,6 +78,7 @@ together, and using the subscripts $spot$, $seas$ and $long$ the Brownian Motion
 of the spot, seasonal, and long-term factors we get the following.
 
 \begin{equation}
+    \label{eq:3f_forward_sde}
     \frac{dF(t, T)}{F(t, T)}= \sigma_{spot} e^{-\alpha(T - t)} dz_{spot}(t) + \\
         \sigma_{seas}(T) dz_{seas}(t) + \sigma_{long} dz_{long}(t)
 \end{equation}
@@ -86,7 +87,23 @@ Refer back to \cite{Fowler} for the statistical properties of the forward and sp
 price assumed by just substituting the parameters in \cite{Fowler} with the specific
 one given above.
 
+\section{Calibration to Historical Data}
+The basic ideas around calibration to historical data are givin in page 9 of \cite{Boogert}
+and \cite{deJong}. The model implies the following about the dynamics of the spot and forward
+prices:
+\begin{itemize}
+    \item $\sigma_{long}$ should approximately equals the volatility (annualised standard 
+    deviation) of the log returns of an annual forward contract at the far end of the 
+    forward curve. The seasonal factor will not have any net effect on annual forward 
+    contract prices due to summer and winter moves cancelling each other out. The effect
+    of $\sigma_{short}$ will be minimal due to the exponential decay of it's effect as
+    shown in \ref{eq:3f_forward_sde}.
+    \item TODO: complete this
+\end{itemize}
+
 \section{Critique of Three Factor Seasonal Model}
+\subsection{Strengths of Model}
+
 The strength of the three-factor seasonal model is it's parsimony. 
 Being able to specify the gas price dynamics using only four parameters is of great help
 in allowing users to intuitively see what is driving the extrinsic value of gas storage
@@ -121,13 +138,38 @@ calibrate the joint price dynamics of the whole forward curve.}.
 The KyStore product is clearly a popular one and The Author believes that this is at least partially due 
 to the parsimony of the underlying price process model.
 
-\bigskip
+\subsection{Weaknesses of Model}
 The big downside of this model is that the forward volatility seasonality structure is unrealistic.
 It is well known that, adjusting for time-to-maturity effects, the volatility of winter periods 
 will generally be higher than those in summer. Figure \ref{fig:seasonal_vol} plots the forward
 volatility implied by the model, with mean reversion set to zero in order to remove any t
 time-to-maturity effect. This chart shows that the model implies two volatility peaks a
 year, once in February, as expected, but the other around August.
+Although the three factor seasonal model captures summer versus winter seasonality, it 
+does not capture the higher frequency day-of-week seasonality. With day-of-week 
+seasonality a lower correlation of returns would be expected between weekday and weekend 
+foward delivery dates, than between pairs of days which are both weekdays or weekend days
+respectively. This is after taking into account non-seasonal reduced correlation due to the 
+difference in delivery dates. Such day-of-week seasonality would likely % TODO reference Rebonator
+have an impact on fast storage where some cycling of volume might be optimal across
+the weekend-weekday boundary. It is unlikely to have any effect on slow storage.
+
+\section{Future Work}
+% \subsection{Addressing Model Weaknesses}
+This section describes briefly potential future which could be done to extend the three
+factor model in order to address the weaknesses presented above.
+% TODO better summer-winter seasonal 
+Decorrelation between weekdays weekend days could be achieved by adding a fourth factor.
+% TODO examples of factors
+However, one problem with adding a fourth weekday-weekend factor is calibration. Often
+there will not be forward market prices for individual days beyond day-ahead which makes
+the correlation between weekdays and weekend days something which can't be observed.
+Another problem is that the addition of a fourth factor will diminish the models
+parsimony. Some experimentation on whether decorrelating weekdays and weekends
+has any material impact on the valuation of storage facilities of interest should be
+conducted as a consideration to whether it is worth adding the extra factor.
+
+% TODO calibration using integrated covariances instead
 
 \begin{figure}
     \includegraphics{vol_seasonality.png}
